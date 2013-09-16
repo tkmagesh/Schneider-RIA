@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Task Manager</title>
+		<style>
+			/* Selectors */
+			/*
+
+				* - All
+				<elementName>
+				#id - id 
+
+			*/
+
+			input, .critical {
+				color :red;
+			}
+			p span{
+				color : blue;
+			}
+		</style>
+	</head>	
+	<body>
+		<h1>Task Manager</h1>
+		<h2>Introduction :</h2>
+		<!-- this is a comment -->
+		<div>
+			<p>This page is used to manage the <span>tasks</span> that one has to keep up with in their day to day life.  The following actions can be performed in this page :</p>
+			<ol>
+				<li class="critical">New tasks can be added</li>
+				<li>Tasks can be toggled with completed/incomplete status</li>
+				<li class="critical">Completed tasks can be removed</li>
+			</ol>	
+			<span>This is some junk text</span>
+		</div>
+		
+		<h2>Tasks :</h2>
+		<div>
+			<div>
+				<form action="./SaveTask.aspx">
+					<div>
+						<label for="txtTask" accesskey="t" class="critical" >Task : </label>
+						<input type="text" id="txtTask" name="nmTask"> 
+					</div>
+					
+					<div>
+						<label for="chkCompleted" accesskey="c" >Completed : </label>
+						<input type="checkbox" id="chkCompleted" name="nmCompleted">
+					</div>
+					<div>
+						<label for="selectCategory" accesskey="g">Category :</label>
+						<select name="" id="selectCategory" name="nmCategory">
+							<option value="Personal">Personal</option>
+							<option value="Official">Official</option>
+							<option value="Social">Social</option>
+						</select>
+					</div>
+					<input type="submit" value="Save">
+				</form>	
+
+			</div>
+			<ul>
+				<li>Learn Web Development</li>
+				<li>Try Server side programming using Node.js</li>
+				<li>Explore jQuery</li>
+				<li>Practice Backbone.js</li>
+			</ul>
+
+		</div>
+		<h2>Task Activities :</h2>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>S.No</th>
+						<th>Activity</th>
+						<th>Date</th>
+					</tr>	
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>1. </td>
+						<td>Added the "Learn Web Development" task</td>
+						<td>01/Sep/2013</td>
+					</tr>
+					<tr>
+						<td>2. </td>
+						<td>Added the "Try Sever side programming..." task</td>
+						<td>01/Sep/2013</td>
+					</tr>
+					<tr>
+						<td>3. </td>
+						<td>Completed the "Learn Web Development" task</td>
+						<td>02/Sep/2013</td>
+					</tr>
+				</tbody>
+				
+			</table>
+
+		</div>
+	</body>
+</html>
