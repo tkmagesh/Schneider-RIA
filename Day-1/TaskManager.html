@@ -28,21 +28,61 @@
 				padding-bottom: 30px;
 				padding-left: 20px;
 				background-color: lightblue;
+				box-shadow: 1px 2px 3px gray;
 			}
 			h1{
+				text-shadow : 1px 2px 3px gray;
 				font-family: monospace;
 				font-size: 28px;
+
 			}
 			section.content{
 				width: 700px;
 				margin : 0px auto;
 			}
 			h2 {
-				color : purple;
+				color : blue;
 				text-decoration: underline;
 				font-size: 23px;
 				margin-bottom: 20px;
+				margin-top: 20px;
 			}
+
+			p{
+				text-indent: 25px;
+			}
+			ul, ol{
+				text-indent: 0px;
+				margin-left: 25px;
+			}
+			form{
+				margin-top: 10px;
+				padding-left: 20px;
+				border : 1px dotted gray;
+			}
+
+			div.field {
+				margin-top: 10px;
+			}
+
+			label{
+				width : 120px;
+				display : block;
+				float : left;
+				text-align: right;
+				margin-right: 10px
+			}
+
+			ul{
+				list-style: none;
+		
+			}
+
+			li{
+						margin-top: 10px;
+			}
+
+
 		</style>
 	</head>	
 	<body>
@@ -59,23 +99,23 @@
 					<li>Tasks can be toggled with completed/incomplete status</li>
 					<li class="critical">Completed tasks can be removed</li>
 				</ol>	
-				<span>This is some junk text</span>
+				
 			</div>
 			
 			<h2>Tasks :</h2>
 			<div>
 				<div>
 					<form action="./SaveTask.aspx">
-						<div>
+						<div class="field">
 							<label for="txtTask" accesskey="t" class="critical" >Task : </label>
 							<input type="text" id="txtTask" name="nmTask"> 
 						</div>
 						
-						<div>
+						<div class="field">
 							<label for="chkCompleted" accesskey="c" >Completed : </label>
 							<input type="checkbox" id="chkCompleted" name="nmCompleted">
 						</div>
-						<div>
+						<div class="field">
 							<label for="selectCategory" accesskey="g">Category :</label>
 							<select name="" id="selectCategory" name="nmCategory">
 								<option value="Personal">Personal</option>
@@ -83,7 +123,11 @@
 								<option value="Social">Social</option>
 							</select>
 						</div>
-						<input type="submit" value="Save">
+						<div class="field">
+							<label for="">&nbsp;</label>
+							<input type="submit" value="Save">
+
+						</div>
 					</form>	
 
 				</div>
