@@ -78,8 +78,17 @@
 		
 			}
 
-			li{
-						margin-top: 10px;
+			ul li{
+				margin-top: 10px;
+				border: 1px solid purple;
+				padding: 5px;
+				background-color: lightyellow;
+			}
+
+			ul li.completed {
+				color : red;
+				text-decoration: line-through;
+				font-style: italic;
 			}
 
 
@@ -133,7 +142,7 @@
 				</div>
 				<ul>
 					<li>Learn Web Development</li>
-					<li>Try Server side programming using Node.js</li>
+					<li class="completed">Try Server side programming using Node.js</li>
 					<li>Explore jQuery</li>
 					<li>Practice Backbone.js</li>
 				</ul>
