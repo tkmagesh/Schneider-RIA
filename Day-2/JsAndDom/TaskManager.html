@@ -3,6 +3,56 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Task Manager</title>
+	<style>
+	.completed {
+		color : red!important;
+		font-style: italic;
+		text-decoration: line-through;
+	}
+
+	.critical {
+		color : purple;
+		font-weight: bold;
+	}
+	
+	</style>
+	<script>
+		function addNewTask(){
+		  var txtTask = document.getElementById("txtTask");
+		  var taskList = document.getElementById("ulTaskList");
+		  /*var newTaskItem = "<li>" + txtTask.value + "</li>";
+		  taskList.innerHTML += newTaskItem;*/
+		  var newTaskItem = document.createElement("li");
+		  newTaskItem.innerHTML = txtTask.value;
+		  newTaskItem.onclick = onTaskItemClick;
+
+		  taskList.appendChild(newTaskItem); 
+		  var msg = "[" + txtTask.value + "] is added!!";
+		  displayMessage(msg);
+		}
+
+		function displayMessage(msg){
+			var divMsg = document.getElementById("divMessage");
+		    divMsg.innerHTML = msg;
+		}
+		function initialize(){
+			var btnAddTask = document.getElementById("btnAddTask");
+			btnAddTask.onclick = addNewTask;
+
+			var taskList = document.getElementById("ulTaskList");
+			for(var i=0;i<taskList.children.length;i++){
+				taskList.children[i].onclick = onTaskItemClick;
+			}
+		}
+		function onTaskItemClick(){
+			if (this.classList.contains("completed")){
+				this.classList.remove("completed");
+			} else {
+				this.classList.add("completed");
+			}
+		}
+		window.onload = initialize;
+	</script>
 </head>
 <body>
 	<h1>Task Manager</h1>
@@ -12,9 +62,10 @@
 	<input type="button" value="Remove Completed" id="btnRemoveCompleted">
 	<ul id="ulTaskList">
 		<li>task-1</li>
-		<li>task-2</li>
+		<li class="critical completed">task-2</li>
 		<li>task-3</li>
 	</ul>
 	<div id="divMessage"></div>
+
 </body>
 </html>
