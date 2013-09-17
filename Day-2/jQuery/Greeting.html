@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Greeting App</title>
+	<script src="jquery-1.8.3.js"></script>
+	<script>
+	
+
+	function greet(){
+		var firstName = $("#txtFirstName").val();
+		var lastName = $("#txtLastName").val();
+		var msg = "Hi " + firstName + " " + lastName + ". Good Afternoon!!";
+		$("#divMessage").html(msg);
+	}
+	//window.onload = initialize;
+	//$(document).ready(initialize);
+
+	$(function(){
+		$("#btnGreet").click(greet);
+	});
+
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="txtFirstName">
+	<input type="text" name="" id="txtLastName">
+	<input type="button" value="Greet" id="btnGreet">
+	<div id="divMessage"></div>
+</body>
+</html>
