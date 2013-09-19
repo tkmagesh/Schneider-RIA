@@ -41,8 +41,14 @@
 		};
 
 
-
-		this.onModelChanged = function(){};
+		var _callbacks = [];
+		this.addOnModelChanged = function(callback){
+			_callbacks.push(callback);
+		};
+		this.onModelChanged = function(attrName){
+			for(var i=0;i<_callbacks.length;i++)
+				_callbacks[i](attrName);
+		};
 	}
 		
 	function GreetView(model){
@@ -65,9 +71,9 @@
 		 	$btnGreet = $template.find("#btnGreet");
 		 	$divMessage = $template.find("#divMessage");
 
-			model.onModelChanged = function(){
+			model.addOnModelChanged(function(){
 				updateView();
-			}
+			});
 
 			updateView();
 
@@ -86,10 +92,10 @@
 		}
 	}
 	$(function(){
-		var model = new GreetModel();
-		var view = new GreetView(model);
-		view.initialize();
-		$(document.body).append(view.$root);
+		window.model = new GreetModel();
+		window.view = new GreetView(model);
+		window.view.initialize();
+		$(document.body).append(window.view.$root);
 	
 	})
 	
