@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Greeting App</title>
+	<script src="jquery-1.8.3.js"></script>
+	<script>
+	function GreetModel(){
+		var _firstName, _lastName, _greetMsg, _canBeGreeted = false;
+		this.firstName = function(){
+			if (arguments.length == 0) return _firstName;
+			_firstName = arguments[0];
+			update_canBeGreeted();
+			this.onModelChanged();
+		};
+
+		function update_canBeGreeted(){
+			_canBeGreeted = (typeof _firstName != "undefined" && _firstName != '') && (typeof _lastName != "undefined" && _lastName != '');
+
+		}
+
+		this.lastName = function(){
+			if (arguments.length == 0) return _lastName;
+			_lastName = arguments[0];	
+			update_canBeGreeted();
+			this.onModelChanged();
+		};
+
+		this.canBeGreeted = function(){
+			return _canBeGreeted;
+		};
+
+		this.greet = function(){
+			_greetMsg =  "Hi " + this.firstName() + " " + this.lastName();
+			this.onModelChanged();
+		}
+		//var that = this;
+		this.greetMsg = function(){
+			return _greetMsg;
+		};
+
+
+
+		this.onModelChanged = function(){};
+	}
+		
+	function GreetView(model){
+		var $template,
+			 	$txtFirstName,
+			 	$txtLastName,
+			 	$btnGreet,
+			 	$divMessage,
+			 	$root;
+		function updateView(){
+			$txtFirstName.val(model.firstName());
+			$txtLastName.val(model.lastName());
+			$divMessage.html(model.greetMsg());
+			$btnGreet.attr("disabled", !model.canBeGreeted());
+		}
+		this.initialize = function(){
+			$template = $($("#greetTemplate").html());
+		 	$txtFirstName = $template.find("#txtFirstName");
+		 	$txtLastName = $template.find("#txtLastName");
+		 	$btnGreet = $template.find("#btnGreet");
+		 	$divMessage = $template.find("#divMessage");
+
+			model.onModelChanged = function(){
+				updateView();
+			}
+
+			updateView();
+
+			$txtFirstName.change(function(){
+				model.firstName(this.value);
+			});
+			
+			$txtLastName.change(function(){
+				model.lastName(this.value);
+			});
+
+			$btnGreet.click(function(){
+				model.greet();
+			});
+			this.$root = $template;
+		}
+	}
+	/*$(function(){
+		var model = new GreetModel();
+		var view = new GreetView(model);
+		view.initialize();
+		$(document.body).append(view.$root);
+	
+	})*/
+	
+	</script>
+	<script type="text/template" id="greetTemplate">
+	<div id="divContent">
+		<input type="text" name="" id="txtFirstName">
+		<input type="text" name="" id="txtLastName">
+		<input type="button" value="Greet" id="btnGreet">
+		<div id="divMessage"></div>
+		
+	</div>
+	</script>
+</head>
+<body>
+	
+	<div id="divGreetCounter">
+		
+	</div>
+</body>
+</html>
