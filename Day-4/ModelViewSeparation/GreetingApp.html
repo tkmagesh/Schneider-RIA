@@ -10,20 +10,21 @@
 		this.firstName = function(){
 			if (arguments.length == 0) return _firstName;
 			_firstName = arguments[0];
+			this.onModelChanged("firstName");
 			update_canBeGreeted();
-			this.onModelChanged();
 		};
-
+		var that = this;
 		function update_canBeGreeted(){
 			_canBeGreeted = (typeof _firstName != "undefined" && _firstName != '') && (typeof _lastName != "undefined" && _lastName != '');
-
+			that.onModelChanged("canBeChanged");
 		}
 
 		this.lastName = function(){
 			if (arguments.length == 0) return _lastName;
 			_lastName = arguments[0];	
+			
+			this.onModelChanged("lastName");
 			update_canBeGreeted();
-			this.onModelChanged();
 		};
 
 		this.canBeGreeted = function(){
@@ -32,7 +33,7 @@
 
 		this.greet = function(){
 			_greetMsg =  "Hi " + this.firstName() + " " + this.lastName();
-			this.onModelChanged();
+			this.onModelChanged("greetMsg");
 		}
 		//var that = this;
 		this.greetMsg = function(){
@@ -84,13 +85,13 @@
 			this.$root = $template;
 		}
 	}
-	/*$(function(){
+	$(function(){
 		var model = new GreetModel();
 		var view = new GreetView(model);
 		view.initialize();
 		$(document.body).append(view.$root);
 	
-	})*/
+	})
 	
 	</script>
 	<script type="text/template" id="greetTemplate">
